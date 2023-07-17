@@ -81,7 +81,7 @@ def power_law(data, params):
         else:
             normalization_constant *= (1 / (beta + 1))
         
-        return ((m_1 ** (-alpha)) / normalization_constant)
+        return ((m_1 ** (-alpha) * (q ** (beta))) / normalization_constant)
     else:
         return 0.0
 
@@ -116,6 +116,10 @@ def log_population_distribution(params, model):
         log_population_distribution = 0.0 # initialize the value to zero
         for event in posterior_samples:
             sum = 0.0
+            
+            # TODO: remove the loop
+                
+            
             for i in range(event.shape[0]):
                 if (model=="truncated_power_law"):
                     data = np.array([event['mass_1_source'][i], event['mass_ratio'][i]])
